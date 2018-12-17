@@ -9,6 +9,7 @@ const serverConfigs = configs.server;
 
 const Koa = require('koa');
 const logger = require('koa-logger');
+const static = require('koa-static');
 const SocketIO = require('socket.io');
 
 const app = new Koa();
@@ -19,6 +20,7 @@ let httpIo;
 let httpsIo;
 
 app.use(logger());
+app.use(static(path.resolve(__dirname, 'storage', 'public')))
 
 const apiRouter = routers.api;
 app.use(apiRouter.routes())
